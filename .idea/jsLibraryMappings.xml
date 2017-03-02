@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="JavaScriptLibraryMappings">
+    <file url="file://$PROJECT_DIR$" libraries="{react_redux_starter/node_modules}" />
+    <file url="PROJECT" libraries="{enzyme-DefinitelyTyped, jest-DefinitelyTyped, react-DefinitelyTyped, react-redux-DefinitelyTyped, redux-DefinitelyTyped}" />
+    <includedPredefinedLibrary name="ECMAScript 6" />
+  </component>
+</project>
