@@ -9,12 +9,12 @@ import { Provider } from "react-redux";
 
 import store from './store';
 
-import Reporter from './MyComponent/MyComponent.js';
+import MyComponent from './MyComponent/MyComponent.js';
 
 ReactDOM.render((
     <Provider store={store}>
     <Router history={hashHistory}>
-        <Route path="/" component={Reporter}/>
+        <Route path="/" component={MyComponent}/>
     </Router>
     </Provider>
 ), document.getElementById('root'));
