@@ -4,6 +4,15 @@ import { connect } from 'react-redux';
 import {handleClick} from './actions/MyComponent'
 // import { ... } from './components/';
 
+// make an onChange on an input
+// handle the change on input using Redux
+// set up an action in the MyComponent that gets fired when the onChange method happens.
+// capture and store the value of the input (e) needs to be passed along
+
+// EPIC MODE:
+// save the input into reducers (create a new key called formData)
+// name and email updated independently 
+
 export class MyComponent extends Component {
 
     componentWillMount(){
