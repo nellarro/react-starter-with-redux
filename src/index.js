@@ -6,7 +6,8 @@ import 'font-awesome/css/font-awesome.css';
 import './index.scss';
 
 import { Provider } from "react-redux";
-
+// Provider has 'store' from react-redux
+// then imports store from the file there
 import store from './store';
 
 import MyComponent from './MyComponent/MyComponent.js';

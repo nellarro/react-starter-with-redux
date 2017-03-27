@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 // import { Row } from 'react-bootstrap';
-
+import {handleClick} from './actions/MyComponent'
 // import { ... } from './components/';
 
 export class MyComponent extends Component {
@@ -10,10 +10,11 @@ export class MyComponent extends Component {
     }
 
     render() {
-        // const { ... } = this.props;
+        const { isClicked } = this.props;
         return (
             <div>
-                Hello from MyComponent
+               <button onClick={ (event) => this.props.dispatch(handleClick()) }>Click here.</button>
+               {isClicked ? <span>Hi.</span> : <div>Toodles</div>}
             </div>
         );
     }
@@ -25,6 +26,7 @@ export const mapStateToProps = (store) => {
 //        return null;
 //    };
     return {
+      isClicked: store.Test.testReducer.isClicked
     };
 };
 
