@@ -37,7 +37,7 @@ export class MyComponent extends Component {
         // if (!component) return (<div/>);
         let clickHandler = generateClickHandlerFunc(component);
         let heartClick = genHeartClickFunc(component);
-        let showHeart = component.isFavorite ? <i className="fa fa-heart-o"></i> : <div />;
+        let showHeart = component.isFavorite ? <div><i className="fa fa-heart-o"></i></div> : <div />;
         return (
             <div>
                <button onClick={ (event) => this.props.dispatch(handleClick()) }>Click here.</button>
@@ -47,7 +47,6 @@ export class MyComponent extends Component {
                <button onClick={clickHandler}>Stuff</button>
                <div className="images">
                  <img src='https://unsplash.it/200/300/?random' alt="random" onClick={heartClick}/>
-                 <div className="favorite"><i className="fa fa-heart-o"></i><i className="fa fa-heart"></i></div>
                  {showHeart}
                </div>
             </div>
