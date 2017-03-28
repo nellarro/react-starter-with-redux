@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 // import { Row } from 'react-bootstrap';
 import {handleClick, handleChange, generateClickHandlerFunc, genHeartClickFunc} from './actions/MyComponent'
 import ComponentData  from "../shared/actions/ComponentData";
+import Dummy from "./components/DummyComponent"
 // import { ... } from './components/';
 
 // make an onChange on an input
@@ -45,10 +46,7 @@ export class MyComponent extends Component {
                <input type='text' placeholder='hi there' onChange={ (e) => {
                  console.log(e.target.value); this.props.dispatch(handleChange(e.target.value))}} />
                <button onClick={clickHandler}>Stuff</button>
-               <div className="images">
-                 <img src='https://unsplash.it/200/300/?random' alt="random" onClick={heartClick}/>
-                 {showHeart}
-               </div>
+               <Dummy component={component} />
             </div>
         );
     }
