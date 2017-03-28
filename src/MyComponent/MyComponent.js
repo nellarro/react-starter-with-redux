@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 // import { Row } from 'react-bootstrap';
-import {handleClick, handleChange, generateClickHandlerFunc} from './actions/MyComponent'
+import {handleClick, handleChange, generateClickHandlerFunc, genHeartClickFunc} from './actions/MyComponent'
 import ComponentData  from "../shared/actions/ComponentData";
 // import { ... } from './components/';
 
@@ -24,13 +24,20 @@ export class MyComponent extends Component {
 
     componentWillMount(){
       let component = new ComponentData("MyComponent", this.props.dispatch);
-      component.setComponent({clicked: false});
+      component.setComponent({
+        clicked: false,
+        foo: 'bar',
+        isFavorite: false
+      });
+
     }
 
     render() {
         const { isClicked, component } = this.props;
         // if (!component) return (<div/>);
         let clickHandler = generateClickHandlerFunc(component);
+        let heartClick = genHeartClickFunc(component);
+        let showHeart = component.isFavorite ? <i className="fa fa-heart-o"></i> : <div />;
         return (
             <div>
                <button onClick={ (event) => this.props.dispatch(handleClick()) }>Click here.</button>
@@ -38,20 +45,25 @@ export class MyComponent extends Component {
                <input type='text' placeholder='hi there' onChange={ (e) => {
                  console.log(e.target.value); this.props.dispatch(handleChange(e.target.value))}} />
                <button onClick={clickHandler}>Stuff</button>
+               <div className="images">
+                 <img src='https://unsplash.it/200/300/?random' alt="random" onClick={heartClick}/>
+                 <div className="favorite"><i className="fa fa-heart-o"></i><i className="fa fa-heart"></i></div>
+                 {showHeart}
+               </div>
             </div>
         );
     }
 }
 
 export const mapStateToProps = (store) => {
-//    let initialize = (variable) => {
-//        if (typeof variable !== "undefined") return variable;
-//        return null;
-//    };
+   let initialize = (variable) => {
+       if (typeof variable !== "undefined") return variable;
+       return null;
+   };
     return {
       isClicked: store.Test.testReducer.isClicked,
       hasTyped: store.Test.testReducer.hasTyped,
-      component: store.Components.MyComponent
+      component: initialize(store.Components.MyComponent) || {}
     };
 };
 

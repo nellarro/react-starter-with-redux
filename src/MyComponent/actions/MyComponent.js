@@ -1,3 +1,5 @@
+// actions in here (functions)
+
 export function handleClick () {
   console.log("::heart")
   return {
@@ -18,4 +20,10 @@ export function generateClickHandlerFunc (component) {
   return (e) => {
     component.setComponent({clicked: !component.clicked});
   }
-}
+};
+
+export function genHeartClickFunc (component) {
+  return (e) => {
+    component.setComponent({isFavorite: !component.isFavorite})
+  }
+};
