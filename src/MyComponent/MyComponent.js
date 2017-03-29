@@ -27,7 +27,6 @@ export class MyComponent extends Component {
       let component = new ComponentData("MyComponent", this.props.dispatch);
       component.setComponent({
         clicked: false,
-        foo: 'bar',
         isFavorite: false
       });
 
@@ -37,8 +36,7 @@ export class MyComponent extends Component {
         const { isClicked, component } = this.props;
         // if (!component) return (<div/>);
         let clickHandler = generateClickHandlerFunc(component);
-        let heartClick = genHeartClickFunc(component);
-        let showHeart = component.isFavorite ? <div><i className="fa fa-heart-o"></i></div> : <div />;
+
         return (
             <div>
                <button onClick={ (event) => this.props.dispatch(handleClick()) }>Click here.</button>

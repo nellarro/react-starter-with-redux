@@ -24,6 +24,10 @@ export function generateClickHandlerFunc (component) {
 
 export function genHeartClickFunc (component) {
   return (e) => {
-    component.setComponent({isFavorite: !component.isFavorite})
+    console.log(e.target.id)
+    component.setComponent({
+      isFavorite: !component.isFavorite,
+      addHeart: e.target.id
+    })
   }
 };
