@@ -21,30 +21,66 @@ import Dummy from "./components/DummyComponent"
 // save the input into reducers (create a new key called formData)
 // name and email updated independently
 
+// HOMEWORK:
+// have input tag (where user can put in comments)
+// next to input should be a button that submits an onClick that 
+// to the comments array in data
+
+
 export class MyComponent extends Component {
 
     componentWillMount(){
       let component = new ComponentData("MyComponent", this.props.dispatch);
       component.setComponent({
-        clicked: false,
-        isFavorite: false
+        data: [{
+          url: 'http://lorempixel.com/200/300',
+          isFavorite: true,
+          id: 0,
+          comments: []
+        },
+        {
+          url: 'http://lorempixel.com/202/300',
+          isFavorite: false,
+          id: 1,
+          comments: []
+        },
+        {
+          url: 'http://lorempixel.com/203/300',
+          isFavorite: false,
+          id: 2,
+          comments: []
+        },
+        {
+          url: 'http://lorempixel.com/201/301',
+          isFavorite: false,
+          id: 3,
+          comments: []
+        }
+      ]
       });
-
     }
 
     render() {
         const { isClicked, component } = this.props;
         // if (!component) return (<div/>);
         let clickHandler = generateClickHandlerFunc(component);
+        // pass down information to Dummy
+        let map = component.data.map((image, index) => {
+          // Dear Jenell from 30 minutes ago... you can put booleans in ternaries. K?
+          // Love, Jenell
 
+          let heartClick = genHeartClickFunc(component, image.id);
+          return (
+            <Dummy component={component} image={image} heartClick={heartClick} key={index} />
+        )
+        })
         return (
             <div>
                <button onClick={ (event) => this.props.dispatch(handleClick()) }>Click here.</button>
                {isClicked ? <span>Hi.</span> : <div>Toodles</div>}
                <input type='text' placeholder='hi there' onChange={ (e) => {
                  console.log(e.target.value); this.props.dispatch(handleChange(e.target.value))}} />
-               <button onClick={clickHandler}>Stuff</button>
-               <Dummy component={component} />
+               {map}
             </div>
         );
     }
@@ -58,7 +94,7 @@ export const mapStateToProps = (store) => {
     return {
       isClicked: store.Test.testReducer.isClicked,
       hasTyped: store.Test.testReducer.hasTyped,
-      component: initialize(store.Components.MyComponent) || {}
+      component: initialize(store.Components.MyComponent) || {data: []}
     };
 };
 
